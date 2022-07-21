@@ -1,4 +1,24 @@
 {
+  "name": "whatsapp",
+  "description": "Whats app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bobokhuja/whatsapp.git"
+  },
+  "keywords": [
+    "whatsapp"
+  ],
+  "author": "Bobokhuja <bobokhuja@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bobokhuja/whatsapp/issues"
+  },
+  "homepage": "https://github.com/Bobokhuja/whatsapp#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
@@ -7,5 +27,6 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.19"
-  }
+  },
+  "devDependencies": {}
 }
