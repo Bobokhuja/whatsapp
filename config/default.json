@@ -1,0 +1,9 @@
+{
+  "jwtSecret": "bobokhuja whatsapp secret",
+  "db": {
+    "host": "localhost",
+    "user": "root",
+    "password": "bobokhuja99",
+    "database": "whatsapp"
+  }
+}
