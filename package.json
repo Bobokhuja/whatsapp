@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Bobokhuja/whatsapp.git"
   },
+  "type": "module",
   "keywords": [
     "whatsapp"
   ],
