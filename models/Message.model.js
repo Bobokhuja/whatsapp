@@ -14,10 +14,9 @@ class Message {
             INSERT INTO message (message, type, sender, receiver, status, date)
             VALUES ("${message}", "${type}", "${sender}", "${receiver}", "${status}", "${date}")`
 
-        connection.query(query, (err, results) => {
+        connection.query(query, (err, results, fields) => {
           if (err) reject(err)
-
-          resolve(results)
+          resolve(results.insertId)
         })
 
       })

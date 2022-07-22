@@ -33,8 +33,8 @@ router.post(
         status: 'delivered',
         date: new Date().toLocaleString('zh')
       }
-      await MessageModel.add(formatMessage)
-      res.status(201).json({message: 'Сообщение отправлено', status: formatMessage.status})
+      const id =await MessageModel.add(formatMessage)
+      res.status(201).json({status: formatMessage.status, id})
     } catch (e) {
       res.status(500).json({message: 'Что-то пошло не так'})
       console.log(e)

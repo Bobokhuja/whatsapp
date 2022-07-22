@@ -10,14 +10,14 @@ const router = Router()
 router.post(
   '/:receiverId',
   [
-    check('text', 'Текст не может быть пустым').exists(),
+    check('text', 'Текст не может быть пустым').exists().isLength({min: 1}),
     AuthMiddleware
   ],
   async (req, res) => {
     try {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        return res.status(400).json({message: 'Некорректные данные при создании сообщения'})
+        return res.status(400).json({message: 'Некорректные данные при создании draft'})
       }
 
       const {text} = req.body
@@ -40,13 +40,7 @@ router.get(
   '/',
   AuthMiddleware,
   async (req, res) => {
-
-    const {receiverId} = req.params
-    const receiver = await UserModel.getUser({id: receiverId})
     const {userId} = req.user
-
-    if (!receiver) return res.status(404).json({message: 'Такой пользователь не существует'})
-
     const drafts = await DraftModel.getDrafts(userId)
     res.json(drafts)
   }
@@ -62,7 +56,7 @@ router.get(
     const receiver = await UserModel.getUser({id: receiverId})
     if (!receiver) return res.status(404).json({message: 'Такой пользователь не существует'})
 
-    const draft = await DraftModel.getDraft(userId, receiverId)
+    const draft = await DraftModel.getDraft(userId, receiverId) || null
     res.json(draft)
   }
 )

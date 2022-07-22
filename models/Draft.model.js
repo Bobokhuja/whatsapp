@@ -10,23 +10,43 @@ class Draft {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
         if (err) reject(err)
-        const query = `
-            INSERT INTO draft (user, receiver, text)
-            VALUES ("${userId}", "${receiverId}", "${text}")`
 
-        connection.query(query, (err, results) => {
+        connection.query(`SELECT *
+                          FROM draft
+                          WHERE user = "${userId}"
+                            AND receiver = "${receiverId}"`, (err, results) => {
           if (err) reject(err)
-          resolve(results)
+          let query
+
+          if (results[0]) {
+            query = `UPDATE draft
+                     SET text="${text}"
+                     WHERE user=${userId}
+                       and receiver=${receiverId};`
+          } else {
+            query = `
+                INSERT INTO draft (user, receiver, text)
+                VALUES ("${userId}", "${receiverId}", "${text}")`
+          }
+          connection.query(query, (err, results) => {
+            if (err) reject(err)
+            resolve(results)
+          })
         })
+
 
       })
     })
   }
+
   getDraft(userId, receiverId) {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
         if (err) reject(err)
-        const query = `SELECT * FROM draft WHERE user="${userId}" AND receiver="${receiverId}"`
+        const query = `SELECT *
+                       FROM draft
+                       WHERE user = "${userId}"
+                         AND receiver = "${receiverId}"`
         connection.query(query, (err, results) => {
           if (err) reject(err)
           resolve(results[0])
@@ -39,7 +59,9 @@ class Draft {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
         if (err) reject(err)
-        const query = `SELECT * FROM draft WHERE user="${userId}"`
+        const query = `SELECT *
+                       FROM draft
+                       WHERE user = "${userId}"`
         connection.query(query, (err, results) => {
           if (err) reject(err)
           resolve(results)
@@ -52,7 +74,10 @@ class Draft {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
         if (err) reject(err)
-        const query = `DELETE FROM draft WHERE user="${senderId}" AND receiver="${receiverId}"`
+        const query = `DELETE
+                       FROM draft
+                       WHERE user = "${senderId}"
+                         AND receiver = "${receiverId}"`
         connection.query(query, (err, results) => {
           if (err) reject(err)
           resolve(!!results.affectedRows)
