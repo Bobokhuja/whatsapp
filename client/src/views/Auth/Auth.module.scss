@@ -1,0 +1,38 @@
+.Auth {
+  background: rgb(49,43,150);
+  background: linear-gradient(90deg, rgba(49,43,150,1) 0%, rgba(52,52,166,1) 35%, rgba(0,212,255,1) 100%);
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.Form {
+  display: flex;
+  flex-basis: 500px;
+  //transform: translateY(-100px);
+  flex-direction: column;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 30px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, .2);
+
+  h2 {
+    margin-top: 0;
+    text-align: center;
+    font-weight: 300;
+    font-size: 28px;
+  }
+}
+
+.FormToggle {
+  display: inline-block;
+  margin: 0 auto;
+  background: none;
+  box-shadow: none;
+  border: none;
+  color: #38BDF8FF;
+  font-size: 15px;
+  cursor: pointer;
+}
