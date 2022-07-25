@@ -1,5 +1,15 @@
 // import {useState, useEffect} from 'react'
 
-export const useAuth = (token: string | null) => {
-  return false
+import { useEffect, useState } from 'react'
+import { useAppSelector } from './redux'
+
+export const useAuth = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const {token} = useAppSelector(state => state.auth)
+  useEffect(() => {
+    if (token) {
+      setIsAuthenticated(true)
+    }
+  }, [token])
+  return [isAuthenticated, setIsAuthenticated]
 }

@@ -13,7 +13,7 @@ const router = Router()
 router.post(
   '/register',
   [
-    check('name', 'Неправильное имя').isLength({min: 3, max: 15}),
+    check('name', 'Неправильное имя').isLength({min: 3, max: 30}),
     check('username', 'Неправильный никнейм').isLength({min: 4, max: 12}),
     check('password', 'Пароль должен иметь минимум 6 символов').isLength({min: 6})
   ],
@@ -43,6 +43,7 @@ router.post(
           expiresIn: '1h'
         }
       )
+
       res.status(201).json({userId: user.id, token})
     } catch(e) {
       res.status(500).json({message: 'Что-то пошло не так'})
@@ -59,6 +60,7 @@ router.post(
   ],
   async (req, res) => {
     try {
+      console.log(true)
       const errors = validationResult(req)
       if (!errors.isEmpty())
         return res.status(400).json({
@@ -72,7 +74,7 @@ router.post(
 
       const isMatch = await bcrypt.compare(password, user.password)
       if (!isMatch) return res.status(400).json({message: 'Неправильный логин или пароль'})
-
+      console.log('after isMatch')
       const token = jwt.sign(
         {userId: user.id},
         config.get('jwtSecret'),

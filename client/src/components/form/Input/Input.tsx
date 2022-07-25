@@ -5,9 +5,11 @@ interface IInput {
   type: HTMLInputTypeAttribute
   label: string
   error?: string
+  name: string
+  value: string
 }
 
-function Input({type, label, error}: IInput) {
+function Input({type, label, error, name, value}: IInput) {
   const htmlFor = `input-${type}-${label}`
   return (
     <div className={classes.Input}>
@@ -15,6 +17,8 @@ function Input({type, label, error}: IInput) {
       <input
         type={type}
         id={htmlFor}
+        name={name}
+        value={value}
       />
       <small className={classes.error}>{error}</small>
     </div>

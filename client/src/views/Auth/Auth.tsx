@@ -3,8 +3,13 @@ import classes from './Auth.module.scss'
 import LoginForm from './LoginForm/LoginForm'
 import RegistrationForm from './RegistrationForm/RegistrationForm'
 
-function Auth() {
+interface IAuth {
+
+}
+
+function Auth({}: IAuth) {
   const [isLogin, setIsLogin] = useState<boolean>(true)
+  
   return (
     <div className={classes.Auth}>
       <div className={classes.Form}>

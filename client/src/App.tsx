@@ -5,16 +5,31 @@ import Auth from './views/Auth/Auth'
 import { useAuth } from './hooks/useAuth'
 
 function App() {
-  const isAuthentication = useAuth(null)
+  const [isAuthentication, setIsAuthenticated] = useAuth()
   const navigate = useNavigate()
+
+
   useEffect(() => {
-    navigate('/auth')
+    if (!isAuthentication) {
+      navigate('/auth')
+    }
+    console.log(isAuthentication)
   }, [isAuthentication, navigate])
+
+  if (!isAuthentication) {
+    return (
+      <div className="App">
+        <Routes>
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
+      </div>
+    )
+  }
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/" />
       </Routes>
     </div>
   );
