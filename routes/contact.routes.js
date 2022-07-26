@@ -17,13 +17,10 @@ router.get(
       const contactsFormat = await Promise.all(contacts.map(async contact => {
         const findContact = await UserModel.getUser({id: contact.contact})
         return {
-          date: contact.date,
-          contact: {
-            id: findContact.id,
-            name: findContact.name,
-            status: findContact.status,
-            username: findContact.username
-          }
+          id: findContact.id,
+          name: findContact.name,
+          status: findContact.status,
+          username: findContact.username
         }
       }))
       res.json(contactsFormat)
@@ -73,7 +70,7 @@ router.delete(
       const contact = await ContactModel.getContact(userId, contactId)
       if (!contact) return res.status(404).json({message: 'У вас такого контакта нет'})
       const result = await ContactModel.delete(userId, contactId)
-      res.json({deleted: result})
+      res.json({deleted: result, id: contactId})
     } catch (e) {
       res.status(500).json({message: 'Что-то пошло не так'})
       console.log(e)
@@ -102,7 +99,7 @@ router.post(
       if (matchContact) return res.status(400).json({message: 'Контакт уже добавлен'})
       await ContactModel.insert(userId, contactId)
       res.status(201).json({contactId})
-    } catch(e) {
+    } catch (e) {
       res.status(500).json({message: 'Что-то пошло не так'})
       console.log(e)
     }
