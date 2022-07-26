@@ -32,6 +32,7 @@ class Draft {
             if (err) reject(err)
             resolve(results)
           })
+          connection.release()
         })
 
 
@@ -51,6 +52,7 @@ class Draft {
           if (err) reject(err)
           resolve(results[0])
         })
+        connection.release()
       })
     })
   }
@@ -66,6 +68,7 @@ class Draft {
           if (err) reject(err)
           resolve(results)
         })
+        connection.release()
       })
     })
   }
@@ -82,6 +85,7 @@ class Draft {
           if (err) reject(err)
           resolve(!!results.affectedRows)
         })
+        connection.release()
 
       })
     })

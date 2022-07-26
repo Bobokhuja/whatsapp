@@ -16,6 +16,7 @@ class User {
           if (error) reject(error)
           resolve(results[0])
         })
+        connection.release()
       })
     })
   }
@@ -29,6 +30,7 @@ class User {
           if (error) reject(error)
           resolve(results)
         })
+        connection.release()
       })
     })
   }
@@ -42,6 +44,7 @@ class User {
           if (error) reject(error)
           resolve(results)
         })
+        connection.release()
       })
     })
   }
@@ -55,6 +58,7 @@ class User {
           if (error) reject(error)
           resolve(results)
         })
+        connection.release()
       })
     })
   }

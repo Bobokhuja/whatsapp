@@ -18,7 +18,7 @@ class Message {
           if (err) reject(err)
           resolve(results.insertId)
         })
-
+        connection.release()
       })
     })
   }
@@ -31,7 +31,7 @@ class Message {
           if (err) reject(err)
           resolve(results)
         })
-
+        connection.release()
       })
     })
   }
@@ -45,7 +45,7 @@ class Message {
           if (err) reject(err)
           resolve(!!results.affectedRows)
         })
-
+        connection.release()
       })
     })
   }

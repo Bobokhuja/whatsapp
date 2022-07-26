@@ -15,6 +15,7 @@ class Contact {
           if (error) reject(error)
           resolve(results)
         })
+        connection.release()
       })
     })
   }
@@ -28,6 +29,7 @@ class Contact {
           if (error) reject(error)
           resolve(results[0])
         })
+        connection.release()
       })
     })
   }
@@ -41,6 +43,7 @@ class Contact {
           if (error) reject(error)
           resolve(results)
         })
+        connection.release()
       })
     })
   }
@@ -54,6 +57,7 @@ class Contact {
           if (error) reject(error)
           resolve(!!results.affectedRows)
         })
+        connection.release()
       })
     })
   }

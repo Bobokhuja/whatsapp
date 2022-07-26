@@ -5,10 +5,17 @@ import config from 'config'
 import UserModel from '../models/User.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-
-const pool = createPool(config.get('db'))
+import AuthMiddleware from '../middleware/auth.middleware.js'
 
 const router = Router()
+
+router.get(
+  '/',
+  AuthMiddleware,
+  async (req, res) => {
+    res.status(200).send(true)
+  }
+)
 
 router.post(
   '/register',
@@ -40,7 +47,7 @@ router.post(
         {userId: user.id},
         config.get('jwtSecret'),
         {
-          expiresIn: '1h'
+          expiresIn: '7d'
         }
       )
 
@@ -78,7 +85,7 @@ router.post(
       const token = jwt.sign(
         {userId: user.id},
         config.get('jwtSecret'),
-        {expiresIn: '1h'}
+        {expiresIn: '7d'}
       )
       res.status(201).json({userId: user.id, token})
     } catch(e) {
