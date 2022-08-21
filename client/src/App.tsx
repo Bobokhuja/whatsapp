@@ -22,7 +22,7 @@ function App() {
     if (userId && token) {
       dispatch(fetchProfile(userId))
       dispatch(fetchContacts(token))
-      // dispatch(addContact({token, contactId: 3}))
+      // dispatch(addContact({token, contactId: 6}))
       // dispatch(fetchMessages({token, receiverId: 6}))
     }
   }, [isAuthentication, navigate])
@@ -43,6 +43,7 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route path="chat/:receiver" element={<></>}/>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   )

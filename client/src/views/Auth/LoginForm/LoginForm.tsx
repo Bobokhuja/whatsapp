@@ -47,6 +47,7 @@ function LoginForm({}: ILoginForm) {
           setError(null)
           if (response.status !== 201) {
             setError(result.message)
+            values.password = ''
           } else {
             dispatch(setAuthData(result))
           }

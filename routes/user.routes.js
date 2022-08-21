@@ -8,6 +8,10 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   try {
+    if (req.query.hasOwnProperty('findUsers')) {
+      const users = await UserModel.getUsers(req.query.findUsers)
+      return res.json(users.map(user => ({id: user.id, name: user.name, username: user.username, status: user.status})))
+    }
     const user = await UserModel.getUser(req.query)
     if (!user) return res.status(404).json({message: 'Нет такой пользователь'})
 
@@ -18,6 +22,7 @@ router.get('/', async (req, res) => {
       status: user.status
     })
   } catch(e) {
+    console.log(e)
     res.status(500).json({message: 'Что-то пошло не так'})
   }
 })

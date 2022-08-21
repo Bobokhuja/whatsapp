@@ -26,7 +26,7 @@ class Message {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
         if (err) reject(err)
-        const query = `SELECT * FROM message WHERE sender="${senderId}" AND receiver="${receiverId}"`
+        const query = `SELECT * FROM message WHERE sender="${senderId}" AND receiver="${receiverId}" OR sender="${receiverId}" AND receiver="${senderId}"`
         connection.query(query, (err, results) => {
           if (err) reject(err)
           resolve(results)

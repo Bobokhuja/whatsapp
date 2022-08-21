@@ -1,0 +1,50 @@
+.FooterChat {
+  flex-basis: 50px;
+  flex-shrink: 0;
+  width: 100%;
+  background: #e5e5e5;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.InputMessage {
+  flex-grow: 1;
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    height: 40px;
+    font-size: 15px;
+
+    &:hover, &:focus {
+      outline: 4px solid rgba(83, 162, 236, 0.3);
+    }
+  }
+}
+
+.Send {
+  display: block;
+  padding: 0;
+  background: none;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  span {
+    display: block;
+    color: #4474fc;
+    font-size: 35px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    span {
+      color: #ccc;
+    }
+  }
+}

@@ -7,8 +7,29 @@
 .Layout__left {
   flex-basis: 30%;
   border-right: 1px solid #ccc;
+  position: relative;
 }
 
 .Layout__right {
   flex-basis: 70%;
+}
+
+.contact__showing {
+  animation: fadeIn .5s forwards;
+}
+
+.contact__exiting {
+  animation: fadeIn .5s forwards alternate-reverse;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

@@ -1,0 +1,58 @@
+.AddContact {
+  position: absolute;
+  background: #fff;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.Close {
+  background: none;
+  border: none;
+  padding: 0;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.List {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: -1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.Name {
+  font-size: 18px;
+  display: block;
+}
+
+.Username {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.Add {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  span {
+    color: #888;
+  }
+}

@@ -21,6 +21,20 @@ class User {
     })
   }
 
+  getUsers(username) {
+    return new Promise((resolve, reject) => {
+      this.pool.getConnection((err, connection) => {
+        if (err) reject(err)
+        const query = `SELECT * FROM user WHERE username LIKE "%${username}%"`
+        connection.query(query, (error, results) => {
+          if (error) reject(error)
+          resolve(results)
+        })
+        connection.release()
+      })
+    })
+  }
+
   deleteUser(id) {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((err, connection) => {
