@@ -27,6 +27,6 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
-Socket.on('connection',(socket)=>{
-  // Обработка операции
-})
+// Socket.on('connection',(socket)=>{
+//   // Обработка операции
+// })
